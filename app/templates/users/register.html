@@ -1,0 +1,32 @@
+{% extends '/base.html' %}
+
+{% set navigation_bar = [
+  ('/users', 'list', 'Users', False),
+  ('/users/api', 'other', 'Active API Tokens', False),
+  ('/users/register', 'add', 'Register', True),
+  ('/knowledge_points/config', 'list', 'Knowledge Points Config', False)
+] -%}
+
+{% block content %}
+  <div class="form">
+    <form class="cmxform form-horizontal adminex-form" method="POST" action="" accept-charset="UTF-8" role="form">
+      {{form.csrf_token}}  
+      <div class="form-group">
+        <div class="row">
+          <label for="cname" class="control-label col-lg-2">User</label>
+          {{render_field(form.username, show_label="T", size="col-md-5")}}
+          {{render_field(form.password, show_label="T")}}
+        </div>
+        <div class="row">
+          {{render_field(form.email, show_label="T",size="col-md-offset-2 col-md-6")}}
+        </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <button id="submit" type="submit" name="submit" class="btn btn-primary btn-lg">
+            <i class="fa fa-save"></i> Save User
+          </button> 
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

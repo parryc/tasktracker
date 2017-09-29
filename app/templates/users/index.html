@@ -1,0 +1,57 @@
+{% extends '/base.html' %}
+{% block page_js %}
+  {% assets "js_datatable" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+{% endblock %}
+{% block page_css %}
+  {% assets "css_datatable" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" />
+  {% endassets %}
+{% endblock %}
+
+{% block content %}
+  <div class="adv-table">
+    <table  class="display table table-bordered table-striped" id="dynamic-table">
+      <thead>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Roles</th>
+            <th>Active</th>
+            <th>Super Admin</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in user_list %}
+        <tr>
+          <td>
+            <a href="{{user.id}}">{{user.email}}</a>
+          </td>
+          <td>
+            {{user.username}}
+          </td>
+          <td>
+            {% if user.external %}external account{% else %}{{user.roles|join(', ')}}{% endif %}
+          </td>
+          <td>
+            {{user.active}}
+          </td>
+          <td>
+            {{user.admin}}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Roles</th>
+          <th>Active</th>
+          <th>Super Admin</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+{% endblock %}

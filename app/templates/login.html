@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="AllSet Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{csrf_token()}}">
+  {% assets "css_lib" %}
+    <link rel="stylesheet" href="{{ASSET_URL}}" />
+  {% endassets %}
+  <link rel="shortcut icon" href="#" type="image/png">
+
+  <title>Login</title>
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="login-body">
+
+<div class="container">
+  <form class="form-signin" method="POST">
+    <div class="form-signin-heading text-center">
+      <h1 class="sign-title">Everything is Bees</h1>
+    </div>
+      {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+          <div style="padding-left: 20px;">
+          {% for error in errors %}
+            {{ error }}<br>
+          {% endfor %}
+          </div>
+        {% endif %}
+      {% endwith %}
+    <div class="login-wrap">
+      {{ form.csrf_token }}
+      <table>
+        <tr>
+          <td><label>{{form.email.label}}</label>:</td>
+          <td>{{form.email}}</td>
+        </tr>
+        <tr>
+          <td><label>{{form.password.label}}</label>:</td>
+          <td>{{form.password}}</td>
+        </tr>
+      </table>
+      <button class="btn btn-lg btn-login btn-block" type="submit">
+        <i class="fa fa-check"></i>
+      </button>
+
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+
+    </div>
+  </form>
+</div>
+
+</body>
+</html>

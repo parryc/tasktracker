@@ -1,0 +1,61 @@
+{% extends '/base.html' %}
+
+{% block content %}
+  <div class="form">
+    <form class="" method="POST" action="" accept-charset="UTF-8" role="form">
+      {{form.csrf_token}}  
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-offset-2">
+            <h2>{{form.username.data}} ({{form.email.data}})</h2>
+          </div>
+          <label for="cname" class="control-label col-lg-2">User</label>
+          {{ render_field(form.password, show_label="T", size="col-md-4") }}
+          {% if current_user.admin %}
+          {{ render_field(form.active, show_label="T") }}
+          {% endif %}
+        </div>
+        <div class="row">
+          {{ render_field(form.username, show_label="T",size="col-md-offset-2 col-md-4") }}
+          {% if current_user.admin %}
+          {{ render_field(form.admin, show_label="T") }}
+          {% endif %}
+        </div>
+        {% if current_user.admin %}
+        <div class="row">
+          <label class="control-label col-lg-2">Permissions</label>
+          <div class="col-md-offset-2">
+            <label>{{form.core_perm.label}}</label>:<br/>
+            {% for subfield in form.core_perm %}
+              {{ subfield }} {{ subfield.label }} &nbsp;
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-2">
+            <label>{{form.dict_perm.label}}</label>:<br/>
+            {% for subfield in form.dict_perm %}
+              {{ subfield }} {{ subfield.label }} &nbsp;
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <label for="cname" class="control-label col-lg-2">API Management</label>
+          {{ render_field(form.external, show_label="T") }}
+          {{ render_field(form.token, show_label="T") }}
+          {{ render_field(form.purge, show_label="T") }}
+        </div>
+      </div>
+      {% endif %}
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <button id="submit" type="submit" name="submit" class="btn btn-primary btn-lg">
+            <i class="fa fa-save"></i> Save User
+          </button> 
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

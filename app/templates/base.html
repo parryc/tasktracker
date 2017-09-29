@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{t}}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{csrf_token()}}">
+  {% assets "css_lib" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}" />
+  {% endassets %}
+  {% block page_css %}{% endblock %}
+</head>
+<body>
+  {% macro render_field(field, placeholder=None, show_label=None, size="col-md-3", form_css="form-control") %}
+    {% if field.errors %}
+      <div class="has-error inline-form {{size}}">
+    {% elif field.flags.error %}
+      <div class="has-error inline-form {{size}}">
+    {% elif field.type == 'HiddenField' %}
+      <div>
+    {% else %}
+      <div class="inline-form {{size}}">
+    {% endif %}
+    {% if show_label and field.type != 'HiddenField' %}
+      <label>{{field.label}}</label>:
+    {% endif %}
+      {% set css_class = form_css + ' ' + kwargs.pop('class', '') %}
+      {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
+    </div>
+  {% endmacro %}
+  {% block content %}{% endblock %}
+</body>
+</html>

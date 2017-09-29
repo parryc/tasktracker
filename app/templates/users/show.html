@@ -1,0 +1,26 @@
+{% extends '/base.html' %}
+
+{% set navigation_bar = [
+  ('/users', 'list', 'Users', False),
+  ('/users/' ~ user.id, 'view', 'User', True),
+  ('/users/edit/' ~ user.id, 'edit', 'User', False)
+] -%}
+
+{% block content %}
+  <div>
+    <h1>{{user.username}}</h1>
+    <h4>{{user.email}}</h4>
+    <h4>Active: {{user.active}}</h4>
+    {% if current_user.admin %}
+    <h4>Super Admin: {{user.admin}}</h4>
+    <h4>External: {{user.external}}</h4>
+    <h4>API Token: {{user.api_token}}</h4>
+    <h4>Roles:</h4>
+    <ul>
+    {% for role in user.roles %} 
+        <li>{{role}}</li>
+    {% endfor %}
+    </ul>
+    {% endif %}
+  </div>
+{% endblock %}
