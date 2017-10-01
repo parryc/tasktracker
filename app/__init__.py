@@ -24,10 +24,13 @@ login_manager.init_app(app)
 csrf.init_app(app)
 
 # Blueprints
-# from app.mod_tasks.controllers import mod_tasks
+from app.mod_tasks.controllers import mod_tasks
+from app.mod_projects.controllers import mod_projects
 from app.mod_users.controllers import mod_users
 
 # Register blueprints
+app.register_blueprint(mod_tasks)
+app.register_blueprint(mod_projects)
 app.register_blueprint(mod_users)
 
 @app.route('/')

@@ -1,4 +1,3 @@
-"""Controllers for user related functions."""
 from flask import Blueprint, request, render_template, \
                   flash, redirect, url_for, abort
 from app.mod_users.forms import *

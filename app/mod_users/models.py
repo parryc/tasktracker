@@ -1,4 +1,3 @@
-"""Models for the User object."""
 from app import db
 from passlib.apps import custom_app_context as pwd_context
 from datetime import datetime

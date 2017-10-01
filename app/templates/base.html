@@ -27,6 +27,8 @@
       {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
     </div>
   {% endmacro %}
+  User:{{current_user.username}}
+  <br/>
   {% block content %}{% endblock %}
 </body>
 </html>
