@@ -23,12 +23,12 @@ class Tasks(db.Model):
   last_modified      = db.Column(db.DateTime)
   completed_datetime = db.Column(db.DateTime)
 
-  def __init__(self, user, project, task, notes, complete,
+  def __init__(self, user, project_id, task, notes, complete,
                high_priority, due_when, creation_datetime=None,
                last_modified=None, completed_datetime=None):
 
     self.user          = user
-    self.project       = project
+    self.project_id    = project_id
     self.task          = task
     self.notes         = notes
     self.complete      = complete
@@ -54,7 +54,7 @@ class Tasks(db.Model):
 
 def add_task(user, task, project, notes, complete, high_priority, due_when):
   task_entry = Tasks(user=user
-                    ,project=project
+                    ,project_id=project
                     ,task=task
                     ,notes=notes
                     ,complete=complete
@@ -97,4 +97,4 @@ def get_task(id):
   return db.session.query(Tasks).get(id)
 
 def get_tasks_by_user(user, number=10):
-  return Tasks.query.filter_by(user=user.id).limit(number)
+  return Tasks.query.filter_by(user=user.id).limit(number).all()

@@ -1,0 +1,28 @@
+{% extends '/base.html' %}
+
+{% block content %}
+  <div class="form">
+    <form class="cmxform form-horizontal adminex-form" method="POST" action="" accept-charset="UTF-8" role="form">
+      {{form.csrf_token}}  
+      <div class="form-group">
+        <div class="row">
+          <label for="cname" class="control-label col-lg-2">Task</label>
+          {{render_field(form.task, show_label="T")}}
+          {{render_field(form.project, show_label="T")}}
+          {{render_field(form.due_when, show_label="T")}}
+          {{render_field(form.high_priority, show_label="T")}}
+        </div>
+        <div class="row">
+          {{render_field(form.notes, show_label="T")}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <button id="submit" type="submit" name="submit" class="btn btn-primary btn-lg">
+            <i class="fa fa-save"></i> Save Task
+          </button> 
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}

@@ -28,7 +28,6 @@ def index():
 @login_required
 def add():
   form = ProjectForm(request.form)
-  print(form.priority.data)
   if form.validate_on_submit():
     project  = form.project.data
     notes    = form.notes.data
