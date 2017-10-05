@@ -1,11 +1,17 @@
 {% extends '/base.html' %}
 
 {% block content %}
-  <div>
-    <ul>
-      {% for task in tasks %}
-      <li>[{{task.project.project}}] {{task.task}} #{{task.priority}}</li>
-      {% endfor %}
-    </ul>
-  <div>
+  <table>   
+    <tbody>
+    {% for task in tasks %}
+      <tr class="task" id="task-{{task.id}}">
+        <td><i class="fal fa-circle" aria-hidden="true"></i></td>
+        <td>{% if task.high_priority %}<i class="fal fa-exclamation-circle" aria-hidden="true"></i>{% endif %}</td>
+        <td><strong><em>[{{task.project.project}}]</em></strong></td>
+        <td class="task-details">{{task.task}}</td>
+        <td><a href="/tasks/{{task.id}}"><i class="fal fa-external-link-square" aria-hidden="true"></i></a></td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table
 {% endblock %}

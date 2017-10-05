@@ -68,7 +68,7 @@ def add_task(user, task, project, notes, complete, high_priority, due_when):
 ##########
 
 
-def edit_task(id, project, task, notes, complete, high_priority, due_when):
+def edit_task(id, task, project, notes, complete, high_priority, due_when):
   _task = get_task(id)
   _task.project = project
   _task.task = task
@@ -97,4 +97,8 @@ def get_task(id):
   return db.session.query(Tasks).get(id)
 
 def get_tasks_by_user(user, number=10):
-  return Tasks.query.filter_by(user=user.id).limit(number).all()
+  query = Tasks.query.filter_by(user=user.id)
+  if number == -1:
+    return query.all()
+  else:
+    return query.limit(number).all()

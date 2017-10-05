@@ -27,8 +27,13 @@
       {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
     </div>
   {% endmacro %}
-  User:{{current_user.username}}
-  <br/>
-  {% block content %}{% endblock %}
+  <div>
+    <nav>
+      <a href="/tasks" {%if m == 'Tasks'%}class="active"{%endif%}>Tasks</a> / <a href="/projects" {%if m == 'Projects'%}class="active"{%endif%}>Projects</a> / <a href="/logout">Logout</a>
+    </nav>
+    <article>
+      {% block content %}{% endblock %}
+    </article>
+  </div>
 </body>
 </html>

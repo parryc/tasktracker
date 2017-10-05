@@ -1,5 +1,10 @@
 {% extends '/base.html' %}
 
 {% block content %}
-index
+  <div>
+      {% for task in tasks %}
+      <li>[{{task.project.project}}] {{task.task}} #{{task.priority}}</li>
+      {% endfor %}
+    </ul>
+  <div>
 {% endblock %}

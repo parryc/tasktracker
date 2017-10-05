@@ -43,6 +43,18 @@ def index():
 def not_found(error):
   return render_template('404.html'), 404
 
+# Define static asset bundles to be minimized and deployed
+bundles = {
+  'css_lib': Bundle(
+                # 'css/marx.min.css'
+               'css/fonts/ptsans/fonts.css'
+               ,'css/fonts/fontawesome/fontawesome-pro-light.css'
+               ,'css/fontawesome-pro-core.css'
+               ,'css/style.css'
+               ,filters='cssmin',output='gen/main.css')
+  }
+assets.register(bundles)
+
 
 @login_manager.user_loader
 def load_user(userid):

@@ -1,0 +1,93 @@
+body {
+  font-size: 22px;
+  line-height: 1.4;
+  font-family: "PT Serif","Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(255,110,110);
+  text-decoration: underline;
+}
+
+article {
+  width: 75%;
+  max-width: calc(75% - 1rem);
+}
+
+aside {
+  width: 25%;
+  max-width: calc(25% - 1rem);
+  padding-top: 25px;
+}
+
+code {
+  color: #444;
+  background: #efefef;
+  font-family: "Source Code Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: inherit !important;
+  border-radius: 0.35rem;
+  padding: 0.15rem;
+}
+
+h1 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 15px;
+  background-color: rgb(255,110,110);
+  color: white;
+  border-bottom: none;
+}
+
+nav {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 5%;
+}
+
+section {
+  padding-top: 10px;
+  margin-bottom: -5px;
+}
+
+table {
+  margin-left: 6%;
+  table-layout: fixed;
+}
+
+td {
+  border: none;
+  padding: 5px;
+}
+
+.active {
+  font-weight: bold;
+}
+
+.fa-exclamation-circle {
+  color: red;
+}
+
+.task-details {
+  text-align: left;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+@media screen and (max-width: 40rem) {
+  article {
+    width: inherit;
+    max-width: inherit;
+  }
+
+  aside {
+    width: inherit;
+    max-width: inherit;
+  }
+}
