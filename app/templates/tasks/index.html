@@ -12,7 +12,7 @@
         <td>{% if task.high_priority %}<i class="fal fa-exclamation-circle" aria-hidden="true"></i>{% endif %}</td>
         <td><strong><em>[{{task.project.project}}]</em></strong></td>
         <td class="task-details">{{task.task}}</td>
-        <td><a href="/tasks/{{task.id}}"><i class="fal fa-external-link-square" aria-hidden="true"></i></a></td>
+        <td><a href="/tasks/edit/{{task.id}}"><i class="fal fa-external-link-square" aria-hidden="true"></i></a></td>
       </tr>
     {% endfor %}
     </tbody>

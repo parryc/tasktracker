@@ -11,3 +11,4 @@ class TaskForm(FlaskForm):
   notes         = TextAreaField('notes')
   high_priority = BooleanField('high priority')
   due_when      = SelectField('priority', choices=_due_choices, default=2, coerce=int)
+  complete      = BooleanField('high priority')

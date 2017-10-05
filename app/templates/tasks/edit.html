@@ -1,0 +1,29 @@
+{% extends '/base.html' %}
+
+{% block content %}
+  <form method="POST" action="" accept-charset="UTF-8" role="form">
+    {{form.csrf_token}}  
+    <div>
+      i need to {{render_field(form.task, placeholder="do something of moderate importance")}} for {{render_field(form.project)}}<br/>
+      it needs to be done {{render_field(form.due_when)}}
+      <br/>
+      is high priority? {{render_field(form.high_priority)}}
+      <br/>
+      {{render_field(form.notes, placeholder="notes")}}
+      <br/>
+      complete? {{render_field(form.complete)}}
+      <br/>
+      <br/>
+      <button id="submit" type="submit" name="submit">
+        <i class="fal fa-save"></i> Update Task
+      </button> 
+      <br/>
+      <br/>
+      <em>last modified {{task.last_modified}}</em><br/>
+      <em>created on {{task.creation_datetime}}</em><br/>
+      {% if task.complete %}
+      <em>completed on {{task.completed_datetime}}</em><br/>
+      {% endif %}
+    </div>
+  </form>
+{% endblock %}

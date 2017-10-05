@@ -74,6 +74,10 @@ def edit_task(id, task, project, notes, complete, high_priority, due_when):
   _task.task = task
   _task.notes = notes
   _task.complete = complete
+  if complete:
+    _task.completed_datetime = datetime.utcnow()
+  else:
+    _task.completed_datetime = None
   _task.high_priority = high_priority
   _task.due_when = due_when
   _task.last_modified = datetime.utcnow()

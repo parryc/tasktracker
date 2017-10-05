@@ -38,7 +38,16 @@
           {% if errors %}
             <p class="error">
               {% for error in errors %}
-                {{ error }}<br>
+                {{error}}<br>
+              {% endfor %}
+            </p>
+          {% endif %}
+        {% endwith %}
+        {% with successes = get_flashed_messages(category_filter=["success"]) %}
+          {% if successes %}
+            <p class="success">
+              {% for success in successes %}
+                {{success}}<br>
               {% endfor %}
             </p>
           {% endif %}

@@ -58,28 +58,30 @@ def add():
 @login_required
 def edit(task_id):
   task = get_task(task_id)
-  if task not in get_tasks_by_user(current_user):
+  if task not in get_tasks_by_user(current_user, include_inactive=True):
     abort(403)
 
   form = TaskForm(obj=task)
   form.project.query = get_projects_by_user(current_user)
   if form.validate_on_submit():
     task     = form.task.data
-    project  = form.project.data.id
+    project  = form.project.data
     notes    = form.notes.data
     due_when = form.due_when.data
     high_priority = form.high_priority.data
+    complete = form.complete.data
     
-    save_result = edit_task(task_id, task, project, notes, False, high_priority, due_when)
+    save_result = edit_task(task_id, task, project, notes, complete, high_priority, due_when)
     if save_result['status']:
-      flash(u'Task "%s" was edited successfully.' % task, 'success')
+      flash(u'task "%s" was edited successfully.' % task, 'success')
     else:
-      flash(u'Cannot edit "%s". %s' % (task, save_result['message']), 'error')
+      flash(u'cannot edit "%s". %s' % (task, save_result['message']), 'error')
 
-    return redirect(url_for('.index'))
+    return redirect(url_for('.edit', task_id=task_id))
 
   return render_template('tasks/edit.html'
                         ,form=form
+                        ,task=task
                         ,t=t
                         ,m=m)
 
