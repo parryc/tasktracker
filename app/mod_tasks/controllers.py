@@ -1,5 +1,5 @@
 from flask import Blueprint, request, render_template, \
-                  flash, redirect, url_for, abort
+                  flash, redirect, url_for, abort, jsonify
 from flask_login import login_required, current_user
 from app.mod_tasks.forms import *
 from app.mod_tasks.models import *
@@ -58,7 +58,7 @@ def add():
 @login_required
 def edit(task_id):
   task = get_task(task_id)
-  if task not in get_tasks_by_user(current_user.id):
+  if task not in get_tasks_by_user(current_user):
     abort(403)
 
   form = TaskForm(obj=task)
@@ -82,3 +82,13 @@ def edit(task_id):
                         ,form=form
                         ,t=t
                         ,m=m)
+
+@mod_tasks.route('/complete/<int:task_id>', methods=['POST'])
+@login_required
+def complete(task_id):
+  task = get_task(task_id)
+  if task not in get_tasks_by_user(current_user):
+    abort(403)
+
+  complete_task(task_id)
+  return jsonify({'success':True})

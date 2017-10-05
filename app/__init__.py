@@ -46,13 +46,18 @@ def not_found(error):
 # Define static asset bundles to be minimized and deployed
 bundles = {
   'css_lib': Bundle(
-                # 'css/marx.min.css'
-               'css/fonts/ptsans/fonts.css'
-               ,'css/fonts/fontawesome/fontawesome-pro-light.css'
-               ,'css/fontawesome-pro-core.css'
-               ,'css/style.css'
-               ,filters='cssmin',output='gen/main.css')
-  }
+    # 'css/marx.min.css'
+   'css/fonts/ptsans/fonts.css'
+   ,'css/fonts/fontawesome/fontawesome-pro-light.css'
+   ,'css/fontawesome-pro-core.css'
+   ,'css/style.css'
+   ,filters='cssmin', output='gen/main.css')
+  , 
+  'js_lib': Bundle(
+    'js/lib/jquery-2.3.3.min.js'
+   ,'js/main.js'
+   ,filters='jsmin', output='gen/main.js')
+}
 assets.register(bundles)
 
 

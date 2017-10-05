@@ -1,4 +1,5 @@
 .env/
+app/static/.webassets-cache
 
 # ************
 # Below is auto generated gitignore stuff

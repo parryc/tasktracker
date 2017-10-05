@@ -17,6 +17,7 @@ a:hover {
 article {
   width: 75%;
   max-width: calc(75% - 1rem);
+  margin-left: 5%;
 }
 
 aside {
@@ -34,6 +35,11 @@ code {
   font-size: inherit !important;
   border-radius: 0.35rem;
   padding: 0.15rem;
+}
+
+footer {
+  margin-top: 25px;
+  margin-left: 5%;
 }
 
 h1 {
@@ -57,13 +63,16 @@ section {
 }
 
 table {
-  margin-left: 6%;
   table-layout: fixed;
 }
 
 td {
   border: none;
   padding: 5px;
+}
+
+textarea {
+  height: 12em;
 }
 
 .active {
@@ -74,11 +83,69 @@ td {
   color: red;
 }
 
+.fa-circle:hover {
+  color: green;
+  cursor: pointer;
+}
+
+input[type="text"].input-wide,
+textarea.input-wide {
+  width: 400px;
+}
+
+input[type=checkbox] {
+  transform: scale(1.5);
+  vertical-align: middle;
+}
+
+.task-checkbox {
+  padding-left: 10px;
+}
+
+.task-complete {
+  font-style: italic;
+  color: grey;
+}
+
 .task-details {
   text-align: left;
   word-wrap: break-word;
   white-space: normal;
 }
+
+/******
+from marx.css
+******/
+
+input[type="text"],
+select,
+textarea {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.8);
+  display: inline;
+  padding: 4px;
+  vertical-align: middle;
+  font-size: 18px;
+}
+
+button {
+  background: rgb(255,110,110);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0;
+  padding: 8px 16px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap; }
+
+button:hover {
+  background: rgb(204,87,87);
+  border-color: 1px solid rgba(0, 0, 0, 0.54); }
 
 @media screen and (max-width: 40rem) {
   article {

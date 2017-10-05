@@ -10,30 +10,59 @@
   {% block page_css %}{% endblock %}
 </head>
 <body>
-  {% macro render_field(field, placeholder=None, show_label=None, size="col-md-3", form_css="form-control") %}
+  {% macro render_field(field, placeholder=None, show_label=None, size="form-size", form_css="input-wide") %}
     {% if field.errors %}
-      <div class="has-error inline-form {{size}}">
+      <span class="has-error inline-form {{size}}">
     {% elif field.flags.error %}
-      <div class="has-error inline-form {{size}}">
+      <span class="has-error inline-form {{size}}">
     {% elif field.type == 'HiddenField' %}
-      <div>
+      <span>
     {% else %}
-      <div class="inline-form {{size}}">
+      <span class="inline-form {{size}}">
     {% endif %}
     {% if show_label and field.type != 'HiddenField' %}
       <label>{{field.label}}</label>:
     {% endif %}
       {% set css_class = form_css + ' ' + kwargs.pop('class', '') %}
       {{ field(class=css_class, placeholder=placeholder, **kwargs) }}
-    </div>
+    </span>
   {% endmacro %}
+
   <div>
     <nav>
-      <a href="/tasks" {%if m == 'Tasks'%}class="active"{%endif%}>Tasks</a> / <a href="/projects" {%if m == 'Projects'%}class="active"{%endif%}>Projects</a> / <a href="/logout">Logout</a>
+      <a href="/tasks" {%if m == 'Tasks'%}class="active"{%endif%}>tasks</a> / <a href="/projects" {%if m == 'Projects'%}class="active"{%endif%}>projects</a> / <a href="/logout">logout</a>
     </nav>
     <article>
+      <div>
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+          {% if errors %}
+            <p class="error">
+              {% for error in errors %}
+                {{ error }}<br>
+              {% endfor %}
+            </p>
+          {% endif %}
+        {% endwith %}
+
+        {% if form is defined and form.errors %}
+          <p class="error bg-danger">
+            {% for field, error in form.errors.items() %}
+              {% for e in error %}
+                {{e}}<br>
+              {% endfor %}
+            {% endfor %}
+          </p>
+        {% endif %}
+      </div>
       {% block content %}{% endblock %}
     </article>
+    <footer>
+      <a href="/tasks/add"><i class="fal fa-plus-circle"></i> task</a><br/>
+      <a href="/projects/add"><i class="fal fa-plus-circle"></i> project</a>
+    </footer>
   </div>
+  {% assets "js_lib" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+  {% endassets %}
 </body>
 </html>

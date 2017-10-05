@@ -1,11 +1,14 @@
 {% extends '/base.html' %}
 
 {% block content %}
+  {% if not tasks %}
+    no more tasks, good job
+  {% endif %}
   <table>   
     <tbody>
     {% for task in tasks %}
-      <tr class="task" id="task-{{task.id}}">
-        <td><i class="fal fa-circle" aria-hidden="true"></i></td>
+      <tr class="task">
+        <td class="task-checkbox"><i class="fal {% if task.complete %}fa-check-circle{% else %}fa-circle{% endif %}" aria-hidden="true" data-task-id="{{task.id}}"></i></td>
         <td>{% if task.high_priority %}<i class="fal fa-exclamation-circle" aria-hidden="true"></i>{% endif %}</td>
         <td><strong><em>[{{task.project.project}}]</em></strong></td>
         <td class="task-details">{{task.task}}</td>
@@ -13,5 +16,5 @@
       </tr>
     {% endfor %}
     </tbody>
-  </table
+  </table>
 {% endblock %}
