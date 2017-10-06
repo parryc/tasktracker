@@ -41,7 +41,7 @@ app.register_blueprint(mod_users)
 @app.route('/')
 @login_required
 def index():
-  if current_user.user:
+  if current_user.username:
     return redirect(url_for("tasks.index"))
   else:
     return redirect(url_for("login"))
