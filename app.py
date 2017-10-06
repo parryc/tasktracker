@@ -23,9 +23,9 @@ login_manager.init_app(app)
 csrf.init_app(app)
 
 # Blueprints
-from app.mod_tasks.controllers import mod_tasks
-from app.mod_projects.controllers import mod_projects
-from app.mod_users.controllers import mod_users
+from mod_tasks.controllers import mod_tasks
+from mod_projects.controllers import mod_projects
+from mod_users.controllers import mod_users
 
 # Register blueprints
 app.register_blueprint(mod_tasks)
@@ -48,15 +48,15 @@ def not_found(error):
 # Define static asset bundles to be minimized and deployed
 bundles = {
   'css_lib': Bundle(
-   '../css/fonts/ptsans/fonts.css'
-   ,'../css/fonts/fontawesome/fontawesome-pro-light.css'
-   ,'../css/fontawesome-pro-core.css'
-   ,'../css/style.css'
+   'css/fonts/ptsans/fonts.css'
+   ,'css/fonts/fontawesome/fontawesome-pro-light.css'
+   ,'css/fontawesome-pro-core.css'
+   ,'css/style.css'
    ,filters='cssmin', output='gen/main.css')
   , 
   'js_lib': Bundle(
-    '../js/lib/jquery-2.3.3.min.js'
-   ,'../js/main.js'
+    'js/lib/jquery-2.3.3.min.js'
+   ,'js/main.js'
    ,filters='jsmin', output='gen/main.js')
 }
 assets.register(bundles)
@@ -76,8 +76,8 @@ login_manager.anonymous_user         = PermissableAnonymousUserMixin
 login_manager.login_view             = "login"
 login_manager.login_message_category = "error"
 
-from app.mod_users.forms import *
-from app.mod_users.models import *
+from mod_users.forms import *
+from mod_users.models import *
 @app.route("/login", methods=["GET", "POST"])
 def login():
   form = LoginForm()

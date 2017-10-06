@@ -1,9 +1,9 @@
 from flask import Blueprint, request, render_template, \
                   flash, redirect, url_for, abort
-from app.mod_users.forms import *
-from app.mod_users.models import *
+from mod_users.forms import *
+from mod_users.models import *
 from flask_login import login_required, current_user
-from app.helpers import *
+from helpers import *
 
 mod_users = Blueprint('users', __name__, url_prefix='/users')
 t = 'users'  # Title

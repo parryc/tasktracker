@@ -1,6 +1,6 @@
 from app import db
 from datetime import datetime
-from app.helpers.helpers_db import *
+from helpers.helpers_db import *
 from datetime import timedelta
 
 

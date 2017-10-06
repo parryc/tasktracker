@@ -1,9 +1,9 @@
 from flask import Blueprint, request, render_template, \
                   flash, redirect, url_for, abort
 from flask_login import login_required, current_user
-from app.mod_projects.forms import *
-from app.mod_projects.models import *
-from app.helpers import *
+from mod_projects.forms import *
+from mod_projects.models import *
+from helpers import *
 
 mod_projects = Blueprint('projects', __name__, url_prefix='/projects')
 t = 'projects'  # Title

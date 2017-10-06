@@ -1,7 +1,7 @@
 from app import db
 from passlib.apps import custom_app_context as pwd_context
 from datetime import datetime
-from app.helpers.helpers_db import *
+from helpers.helpers_db import *
 from flask_permissions.models import UserMixin
 from datetime import timedelta
 import uuid

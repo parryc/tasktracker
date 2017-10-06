@@ -1,10 +1,10 @@
 from flask import Blueprint, request, render_template, \
                   flash, redirect, url_for, abort, jsonify
 from flask_login import login_required, current_user
-from app.mod_tasks.forms import *
-from app.mod_tasks.models import *
-from app.mod_projects.models import get_projects_by_user
-from app.helpers import *
+from mod_tasks.forms import *
+from mod_tasks.models import *
+from mod_projects.models import get_projects_by_user
+from helpers import *
 
 mod_tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 t = 'tasks'  # Title

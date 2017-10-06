@@ -1,6 +1,7 @@
 .env/
 app/static/.webassets-cache
 config.py 
+*.sql
 
 # ************
 # Below is auto generated gitignore stuff
