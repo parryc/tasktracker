@@ -22,11 +22,6 @@ login_manager.init_app(app)
 #add csrf protection across the board
 csrf.init_app(app)
 
-# Reset static path rule
-app.add_url_rule(app.static_url_path + '/<path:filename>',
-                 endpoint='static',
-                 view_func=app.send_static_file)
-
 # Blueprints
 from app.mod_tasks.controllers import mod_tasks
 from app.mod_projects.controllers import mod_projects
@@ -53,16 +48,15 @@ def not_found(error):
 # Define static asset bundles to be minimized and deployed
 bundles = {
   'css_lib': Bundle(
-    # 'css/marx.min.css'
-   'css/fonts/ptsans/fonts.css'
-   ,'css/fonts/fontawesome/fontawesome-pro-light.css'
-   ,'css/fontawesome-pro-core.css'
-   ,'css/style.css'
+   '../css/fonts/ptsans/fonts.css'
+   ,'../css/fonts/fontawesome/fontawesome-pro-light.css'
+   ,'../css/fontawesome-pro-core.css'
+   ,'../css/style.css'
    ,filters='cssmin', output='gen/main.css')
   , 
   'js_lib': Bundle(
-    'js/lib/jquery-2.3.3.min.js'
-   ,'js/main.js'
+    '../js/lib/jquery-2.3.3.min.js'
+   ,'../js/main.js'
    ,filters='jsmin', output='gen/main.js')
 }
 assets.register(bundles)
