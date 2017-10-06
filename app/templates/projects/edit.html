@@ -1,0 +1,14 @@
+{% extends '/base.html' %}
+
+{% block content %}
+  <form method="POST" action="" accept-charset="UTF-8" role="form">
+    {{form.csrf_token}}  
+    i have a project {{render_field(form.project, placeholder="name")}} which is of {{render_field(form.priority)}} importance
+    <br/><br/>
+    {{render_field(form.notes, placeholder="notes")}}
+    <br/><br/>
+    <button id="submit" type="submit" name="submit">
+      <i class="fal fa-save"></i> update project
+    </button> 
+  </form>
+{% endblock %}

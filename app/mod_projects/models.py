@@ -62,10 +62,9 @@ def add_project(user, project, tasks, notes, active, priority):
 ##########
 
 
-def edit_project(id, project, tasks, notes, active, priority):
+def edit_project(id, project, notes, active, priority):
   _project = get_project(id)
   _project.project = project
-  _project.task = task
   _project.notes = notes
   _project.active = active
   _project.priority = priority

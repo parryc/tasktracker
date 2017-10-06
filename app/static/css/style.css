@@ -171,4 +171,10 @@ button:hover {
     width: inherit;
     max-width: inherit;
   }
+
+  input[type="text"].input-wide,
+  input[type="password"].input-wide,
+  textarea.input-wide {
+    width: 20rem;
+  }
 }

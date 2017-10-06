@@ -7,7 +7,7 @@
   {% endif %}
   {% for project in projects %}
   <div class="project">
-    <span class="project-title">[{{project.project}}]</span>
+    <a href="/projects/edit/{{project.id}}"><span class="project-title">[{{project.project}}]</span></a>
     <br/>
     <table>   
       <tbody>

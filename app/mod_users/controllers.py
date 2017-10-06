@@ -6,8 +6,8 @@ from flask_login import login_required, current_user
 from app.helpers import *
 
 mod_users = Blueprint('users', __name__, url_prefix='/users')
-t = 'Users'  # Title
-m = 'Users'  # Module
+t = 'users'  # Title
+m = 'users'  # Module
 
 ##########
 # Routes #

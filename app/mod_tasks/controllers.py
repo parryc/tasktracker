@@ -7,8 +7,8 @@ from app.mod_projects.models import get_projects_by_user
 from app.helpers import *
 
 mod_tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
-t = 'Tasks'  # Title
-m = 'Tasks'  # Module
+t = 'tasks'  # Title
+m = 'tasks'  # Module
 
 ##########
 # Routes #
