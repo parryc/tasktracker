@@ -17,6 +17,9 @@ m = 'tasks'  # Module
 @mod_tasks.route('/', methods=['GET'])
 @login_required
 def index():
+  if not hasattr(current_user, 'id'):
+    return redirect(url_for('login'))
+
   tasks = get_tasks_by_user(current_user, number=-1)
   for task in tasks:
     task.priority = task.project.priority + task.due_when - task.high_priority

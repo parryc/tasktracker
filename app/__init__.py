@@ -8,7 +8,6 @@ from flask_login import LoginManager, login_user, login_required,\
                         logout_user, current_user, AnonymousUserMixin
 from flask_permissions.core import Permissions
 from datetime import datetime
-from werkzeug.contrib.cache import MemcachedCache
 import os
 
 app           = Flask(__name__)
@@ -41,7 +40,7 @@ app.register_blueprint(mod_users)
 @app.route('/')
 @login_required
 def index():
-  if current_user:
+  if hasattr(current_user, 'id'):
     return redirect(url_for("tasks.index"))
   else:
     return redirect(url_for("login"))

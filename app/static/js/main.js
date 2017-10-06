@@ -29,7 +29,7 @@ $(document).ready(function(){
     $(this).click(completeTask);
   },
   function(){
-    if(!$(this).hasClass('fa-check-circle'))
+    if(!$(this).hasClass('task-complete'))
       $(this).removeClass('fa-check-circle').removeClass('task-hover').addClass('fa-circle')
   });
 });
