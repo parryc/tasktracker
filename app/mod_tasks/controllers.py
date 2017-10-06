@@ -42,9 +42,9 @@ def add():
     
     save_result = add_task(current_user.id, task, project, notes, False, high_priority, due_when)
     if save_result['status']:
-      flash(u'Task "%s" was successfully added.' % task, 'success')
+      flash(u'task added successfully.', 'success')
     else:
-      flash(u'Cannot add "%s" to database. %s' % (task, save_result['message']), 'error')
+      flash(u'cannot create task. %s' % (task, save_result['message']), 'error')
 
     return redirect(url_for('.index'))
 
@@ -73,7 +73,7 @@ def edit(task_id):
     
     save_result = edit_task(task_id, task, project, notes, complete, high_priority, due_when)
     if save_result['status']:
-      flash(u'task "%s" was edited successfully.' % task, 'success')
+      flash(u'task was edited successfully.', 'success')
     else:
       flash(u'cannot edit "%s". %s' % (task, save_result['message']), 'error')
 

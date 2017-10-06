@@ -29,9 +29,15 @@
   {% endmacro %}
 
   <div>
+    {% if current_user.username %}
     <nav>
-      <a href="/tasks" {%if m == 'Tasks'%}class="active"{%endif%}>tasks</a> / <a href="/projects" {%if m == 'Projects'%}class="active"{%endif%}>projects</a> / <a href="/logout">logout</a>
+      <a href="/tasks" {%if m == 'Tasks'%}class="active"{%endif%}>tasks</a> / <a href="/projects" {%if m == 'Projects'%}class="active"{%endif%}>projects</a> / <a href="/users/edit/{{current_user.id}}" {%if m == 'Users'%}class="active"{%endif%}>{{current_user.username}}</a>
     </nav>
+    {% else %}
+    <nav>
+      everything is bees / <a href="/login">return to login</a>
+    </nav>
+    {% endif %}
     <article>
       <div>
         {% with errors = get_flashed_messages(category_filter=["error"]) %}
@@ -65,13 +71,15 @@
       </div>
       {% block content %}{% endblock %}
     </article>
+    {% if current_user.username %}
     <footer>
       <a href="/tasks/add"><i class="fal fa-plus-circle"></i> task</a><br/>
       <a href="/projects/add"><i class="fal fa-plus-circle"></i> project</a>
     </footer>
+    {% endif %}
   </div>
   {% assets "js_lib" %}
-    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    <script type="text/javascript" src="{{ASSET_URL}}"></script>
   {% endassets %}
 </body>
 </html>

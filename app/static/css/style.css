@@ -83,12 +83,8 @@ textarea {
   color: red;
 }
 
-.fa-circle:hover {
-  color: green;
-  cursor: pointer;
-}
-
 input[type="text"].input-wide,
+input[type="password"].input-wide,
 textarea.input-wide {
   width: 400px;
 }
@@ -98,13 +94,22 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+.project {
+  margin-bottom: 15px;
+}
+
+.project-title {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
 .task-checkbox {
   padding-left: 10px;
 }
 
 .task-complete {
   font-style: italic;
-  color: grey;
+  color: #939393;
 }
 
 .task-details {
@@ -113,11 +118,17 @@ input[type=checkbox] {
   white-space: normal;
 }
 
+.task-hover {
+  color: green;
+  cursor: pointer;
+}
+
 /******
 from marx.css
 ******/
 
 input[type="text"],
+input[type="password"],
 select,
 textarea {
   background: #fff;
@@ -141,7 +152,10 @@ button {
   padding: 8px 16px;
   text-align: center;
   vertical-align: middle;
-  white-space: nowrap; }
+  white-space: nowrap;
+  font-size: 22px;
+  font-family: "PT Serif","Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 
 button:hover {
   background: rgb(204,87,87);

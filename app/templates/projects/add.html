@@ -1,26 +1,14 @@
 {% extends '/base.html' %}
 
 {% block content %}
-  <div class="form">
-    <form class="cmxform form-horizontal adminex-form" method="POST" action="" accept-charset="UTF-8" role="form">
-      {{form.csrf_token}}  
-      <div class="form-group">
-        <div class="row">
-          <label for="cname" class="control-label col-lg-2">Project</label>
-          {{render_field(form.project, show_label="T")}}
-          {{render_field(form.priority, show_label="T")}}
-        </div>
-        <div class="row">
-          {{render_field(form.notes, show_label="T")}}
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-lg-offset-2 col-lg-10">
-          <button id="submit" type="submit" name="submit" class="btn btn-primary btn-lg">
-            <i class="fa fa-save"></i> Save Project
-          </button> 
-        </div>
-      </div>
-    </form>
-  </div>
+  <form method="POST" action="" accept-charset="UTF-8" role="form">
+    {{form.csrf_token}}  
+    i have a project {{render_field(form.project, placeholder="name")}} which is of {{render_field(form.priority)}} importance
+    <br/><br/>
+    {{render_field(form.notes, placeholder="notes")}}
+    <br/><br/>
+    <button id="submit" type="submit" name="submit">
+      <i class="fal fa-save"></i> save project
+    </button> 
+  </form>
 {% endblock %}

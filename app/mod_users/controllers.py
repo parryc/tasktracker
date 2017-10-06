@@ -40,7 +40,6 @@ def show(user_id):
 
 
 @mod_users.route('/register', methods=['GET','POST'])
-@login_required
 def add():
   """Display add user form, if admin."""
   form = RegisterForm(request.form)
@@ -51,11 +50,12 @@ def add():
     
     save_result = add_user(username, password, email)
     if save_result['status']:
-      flash(u'User %s was successfully added.' % username, 'success')
+      flash(u'thanks for joining, %s. please login!' % username, 'success')
     else:
-      flash(u'Cannot add %s to database. %s' % (username, save_result['message']), 'error')
+      flash(u'cannot register "%s". try a different username.' % username, 'error')
+      return redirect(url_for('.add'))
 
-    return redirect(url_for('.index'))
+    return redirect(url_for('login'))
 
   return render_template('users/register.html'
                         ,form=form

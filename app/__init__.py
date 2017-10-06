@@ -88,18 +88,15 @@ def login():
         user.last_logged_in = datetime.utcnow()
         user.logged_in = True
         db.session.commit()
-        flash("Logged in successfully.")
-        return redirect(request.args.get("next") or url_for("index"))
+        flash("hi, everything here is bees.", "success")
+        return redirect(request.args.get("next") or url_for("tasks.index"))
       else:
-        flash("Your username or password was invalid.","error")
+        flash("the bees won't let you in.", "error")
         return redirect(url_for("login"))
     else:
-      if user.external:
-        flash("Cannot log in with external account.", "error")
-      else:
-        flash("Wrong username or password.", "error")
-      return redirect(url_for("login"))
+      flash("the bees won't let you in.", "error")
   return render_template("login.html", form=form)
+
 
 @app.route("/logout")
 @login_required

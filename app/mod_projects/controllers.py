@@ -17,7 +17,7 @@ m = 'Projects'  # Module
 @mod_projects.route('/', methods=['GET'])
 @login_required
 def index():
-  projects = get_projects_by_user(current_user)
+  projects = sorted(get_projects_by_user(current_user), key=lambda x:x.priority)
   return render_template('projects/index.html'
                         ,projects=projects
                         ,t=t
@@ -35,9 +35,9 @@ def add():
     
     save_result = add_project(current_user, project, [], notes, True, priority)
     if save_result['status']:
-      flash(u'Project %s was successfully added.' % project, 'success')
+      flash(u'good luck on, project %s. it\'s ready to go!' % project, 'success')
     else:
-      flash(u'Cannot add %s to database. %s' % (project, save_result['message']), 'error')
+      flash(u'cannot create %s. %s' % (project, save_result['message']), 'error')
 
     return redirect(url_for('.index'))
 
