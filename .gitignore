@@ -1,5 +1,6 @@
 .env/
 app/static/.webassets-cache
+config.py 
 
 # ************
 # Below is auto generated gitignore stuff
