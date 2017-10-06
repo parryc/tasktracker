@@ -23,6 +23,11 @@ login_manager.init_app(app)
 #add csrf protection across the board
 csrf.init_app(app)
 
+# Reset static path rule
+app.add_url_rule(app.static_url_path + '/<path:filename>',
+                 endpoint='static',
+                 view_func=app.send_static_file)
+
 # Blueprints
 from app.mod_tasks.controllers import mod_tasks
 from app.mod_projects.controllers import mod_projects
@@ -36,7 +41,10 @@ app.register_blueprint(mod_users)
 @app.route('/')
 @login_required
 def index():
-  return render_template('index.html')
+  if current_user.user:
+    return redirect(url_for("tasks.index"))
+  else:
+    return redirect(url_for("login"))
 
 
 @app.errorhandler(404)
