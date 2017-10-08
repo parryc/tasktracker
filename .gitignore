@@ -1,5 +1,6 @@
 .env/
-app/static/.webassets-cache
+gen/*
+static/.webassets-cache/*
 config.py 
 *.sql
 
