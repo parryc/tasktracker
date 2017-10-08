@@ -72,7 +72,7 @@ def edit_project(id, project, notes, active, priority):
   return commit_entry(_project)
 
 
-def inactive_project(id):
+def inactivate_project(id):
   _project = get_project(id)
   _project.active = False
   return commit_entry(_project)
@@ -88,5 +88,10 @@ def get_project(id):
   return db.session.query(Projects).get(id)
 
 
-def get_projects_by_user(user):
-  return Projects.query.filter_by(user=user.id)
+def get_projects_by_user(user, include_inactive=False):
+  query = Projects.query.filter_by(user=user.id)
+
+  if not include_inactive:
+    query = query.filter_by(active=True)
+
+  return query.all()

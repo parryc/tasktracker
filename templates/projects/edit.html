@@ -6,6 +6,8 @@
     i have a project {{render_field(form.project, placeholder="name")}} which is of {{render_field(form.priority)}} importance
     <br/><br/>
     {{render_field(form.notes, placeholder="notes")}}
+    <br/>
+    active? {{render_field(form.active)}}
     <br/><br/>
     <button id="submit" type="submit" name="submit">
       <i class="fal fa-save"></i> update project

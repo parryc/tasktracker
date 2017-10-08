@@ -24,6 +24,17 @@ def index():
                         ,m=m)
 
 
+@mod_projects.route('/all', methods=['GET'])
+@login_required
+def all():
+  projects = sorted(get_projects_by_user(current_user, include_inactive=True),
+                    key=lambda x:x.priority)
+  return render_template('projects/index.html'
+                        ,projects=projects
+                        ,t=t
+                        ,m=m)
+
+
 @mod_projects.route('/add', methods=['GET','POST'])
 @login_required
 def add():
@@ -58,8 +69,9 @@ def edit(project_id):
     project  = form.project.data
     notes    = form.notes.data
     priority = form.priority.data
+    active   = form.active.data
     
-    save_result = edit_project(project_id, project, notes, True, priority)
+    save_result = edit_project(project_id, project, notes, active, priority)
     if save_result['status']:
       flash(u'updated project %s. it\'s ready to go!' % project, 'success')
     else:

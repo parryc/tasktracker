@@ -10,7 +10,7 @@ def commit_entry(entry):
     db.session.commit()
     return {'status':True, 'message':u'Success', 'entry':entry}
   except Exception as e:
-    error = str(e).split('.')[0]
+    error = str(e)
     # rollback the session in the event of an error
     db.session.rollback()
     return {'status':False, 'message':u'Error: %s' % unicode(error,'utf-8'), 'entry':None}
