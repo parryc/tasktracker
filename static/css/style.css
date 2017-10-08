@@ -94,6 +94,15 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+.flash:before {
+  content: '❧';
+}
+
+.flash {
+  font-weight: bold;
+  font-style: italic;
+}
+
 .project {
   margin-bottom: 15px;
 }

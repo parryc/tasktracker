@@ -43,7 +43,7 @@
       <div>
         {% with errors = get_flashed_messages(category_filter=["error"]) %}
           {% if errors %}
-            <p class="error">
+            <p class="flash error">
               {% for error in errors %}
                 {{error}}<br>
               {% endfor %}
@@ -52,7 +52,7 @@
         {% endwith %}
         {% with successes = get_flashed_messages(category_filter=["success"]) %}
           {% if successes %}
-            <p class="success">
+            <p class="flash success">
               {% for success in successes %}
                 {{success}}<br>
               {% endfor %}
@@ -61,7 +61,7 @@
         {% endwith %}
 
         {% if form is defined and form.errors %}
-          <p class="error bg-danger">
+          <p class="flash error">
             {% for field, error in form.errors.items() %}
               {% for e in error %}
                 {{e}}<br>
