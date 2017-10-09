@@ -94,6 +94,38 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+.change-enhancement {
+  color: #444;
+  background: #9fa8da;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: inherit !important;
+  border-radius: 0.35rem;
+  padding: 0.15rem 0.25rem;
+}
+
+.change-enhancement:before {
+  content: "enhancement";
+}
+
+.change-bugfix {
+  color: #444;
+  background: #da9f9f;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: inherit !important;
+  border-radius: 0.35rem;
+  padding: 0.15rem 0.25rem;
+}
+
+.change-bugfix:before {
+  content: "bugfix";
+}
+
+.change-list li {
+  margin-bottom: 0.15rem;
+}
+
 .flash:before {
   content: '❧';
 }

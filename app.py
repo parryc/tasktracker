@@ -40,6 +40,11 @@ def index():
   else:
     return redirect(url_for("login"))
 
+@app.route('/changes')
+@login_required
+def changes():
+  return render_template('changes.html')
+
 
 @app.errorhandler(404)
 def not_found(error):

@@ -1,0 +1,15 @@
+{% extends '/base.html' %}
+
+{% block content %}
+  <p>
+    <em style="font-size:1.5em;">changes</em>
+    <br/>
+    <strong>2017-10-08</strong>
+    <ul class="change-list">
+      <li><span class="change-enhancement"></span> add this change log.</li>
+      <li><span class="change-enhancement"></span> add ability to inactivate projects. projects main tab now auto-hides inactive projects. you can access them all at <a href="/projects/all">/projects/all</a>. there's no way (yet) to get there via the normal ui.</li>
+      <li><span class="change-bugfix"></span> add SSL to the site.</li>
+      <li><span class="change-bugfix"></span> improve visibility of error messages (hopefully)</li>
+    </ul>
+  </p>
+{% endblock %}
