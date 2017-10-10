@@ -2,7 +2,14 @@
 
 {% block content %}
   <p>
-    <em style="font-size:1.5em;">changes</em>
+    <em style="font-size:1.5em;">changes</em>    
+    <br/>
+    <strong>2017-10-09</strong>
+    <ul class="change-list">
+      <li><span class="change-enhancement"></span> create default project and task when new users join.</li>
+      <li><span class="change-bugfix"></span> fix 403 response when trying to access a task when you had more than 10.</li>
+      <li><span class="change-bugfix"></span> reroute to login if trying to access a user page while not logged in.</li>
+    </ul>
     <br/>
     <strong>2017-10-08</strong>
     <ul class="change-list">
@@ -11,5 +18,6 @@
       <li><span class="change-bugfix"></span> add SSL to the site.</li>
       <li><span class="change-bugfix"></span> improve visibility of error messages (hopefully)</li>
     </ul>
+
   </p>
 {% endblock %}
