@@ -100,7 +100,7 @@ def get_task(id):
   """Get single task by id."""
   return db.session.query(Tasks).get(id)
 
-def get_tasks_by_user(user, number=10, include_inactive=False):
+def get_tasks_by_user(user, number=-1, include_inactive=False):
   query = Tasks.query.filter_by(user=user.id)
   
   if not include_inactive:
