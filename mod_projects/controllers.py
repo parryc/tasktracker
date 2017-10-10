@@ -46,7 +46,7 @@ def add():
     
     save_result = add_project(current_user, project, [], notes, True, priority)
     if save_result['status']:
-      flash(u'good luck on, project %s. it\'s ready to go!' % project, 'success')
+      flash(u'good luck on project %s. it\'s ready to go!' % project, 'success')
     else:
       flash(u'cannot create %s. %s' % (project, save_result['message']), 'error')
 
