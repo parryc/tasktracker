@@ -5,6 +5,7 @@ from mod_tasks.forms import *
 from mod_tasks.models import *
 from mod_projects.models import get_projects_by_user
 from helpers import *
+from app import csrf
 
 mod_tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 t = 'tasks'  # Title
@@ -90,6 +91,7 @@ def edit(task_id):
 
 @mod_tasks.route('/complete/<int:task_id>', methods=['POST'])
 @login_required
+@csrf.exempt
 def complete(task_id):
   task = get_task(task_id)
   if task not in get_tasks_by_user(current_user):
