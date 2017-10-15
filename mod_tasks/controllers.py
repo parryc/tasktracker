@@ -55,7 +55,8 @@ def add():
   return render_template('tasks/add.html'
                         ,form=form
                         ,t=t
-                        ,m=m)
+                        ,m=m
+                        ,hide_subnav=True)
 
 
 @mod_tasks.route('/edit/<int:task_id>', methods=['GET','POST'])

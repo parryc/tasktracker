@@ -94,6 +94,11 @@ input[type=checkbox] {
   vertical-align: middle;
 }
 
+.add-header {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
 .change-enhancement {
   color: #444;
   background: #9fa8da;

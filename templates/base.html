@@ -32,8 +32,18 @@
   <div>
     {% if current_user.username %}
     <nav>
-      <a href="/tasks" {%if m == 'tasks'%}class="active"{%endif%}>tasks</a> / <a href="/projects" {%if m == 'projects'%}class="active"{%endif%}>projects</a> / <a href="/users/edit/{{current_user.id}}" {%if m == 'users'%}class="active"{%endif%}>{{current_user.username}}</a>
+      <a href="/tasks" {%if m == 'tasks'%}class="active"{%endif%}>tasks</a> / <a href="/projects" {%if m == 'projects'%}class="active"{%endif%}>projects</a> / <a href="/users/edit/{{current_user.id}}" {%if m == 'users'%}class="active"{%endif%}>settings</a>
     </nav>
+    {% if m == 'tasks' and not hide_subnav %}
+    <nav style="margin-top:-0.5em; width: 60%">
+      >>&nbsp;<a href="/tasks/add"><i class="fal fa-plus-circle"></i> task</a>
+    </nav>
+    {% endif %}
+    {% if m == 'projects' and not hide_subnav %}
+    <nav style="margin-top:-0.5em; width: 60%">
+      >>&nbsp;<a href="/projects/add"><i class="fal fa-plus-circle"></i> project</a>
+    </nav>
+    {% endif %}
     {% else %}
     <nav>
       everything is bees / <a href="/login">return to login</a>
@@ -74,9 +84,6 @@
     </article>
     {% if current_user.username %}
     <footer>
-      <a href="/tasks/add"><i class="fal fa-plus-circle"></i> task</a><br/>
-      <a href="/projects/add"><i class="fal fa-plus-circle"></i> project</a>
-      <br/><br/>
       <a href="/logout">logout</a> / <a href="/changes">change log</a>
     </footer>
     {% endif %}

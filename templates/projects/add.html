@@ -1,6 +1,9 @@
 {% extends '/base.html' %}
 
 {% block content %}
+  <p>
+    <span class="add-header">sup, {{current_user.username}}, tell me bout your new project!</span>
+  </p>
   <form method="POST" action="" accept-charset="UTF-8" role="form">
     {{form.csrf_token}}  
     i have a project {{render_field(form.project, placeholder="name")}} which is of {{render_field(form.priority)}} importance

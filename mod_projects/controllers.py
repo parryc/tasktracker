@@ -55,7 +55,8 @@ def add():
   return render_template('projects/add.html'
                         ,form=form
                         ,t=t
-                        ,m=m)
+                        ,m=m
+                        ,hide_subnav=True)
 
 @mod_projects.route('/edit/<int:project_id>', methods=['GET','POST'])
 @login_required

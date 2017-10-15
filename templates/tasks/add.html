@@ -1,6 +1,9 @@
 {% extends '/base.html' %}
 
 {% block content %}
+  <p>
+    <span class="add-header">hey, {{current_user.username}}, whatchu gonna start workin' on?</span>
+  </p>
   <form method="POST" action="" accept-charset="UTF-8" role="form">
     {{form.csrf_token}}  
     <div>
