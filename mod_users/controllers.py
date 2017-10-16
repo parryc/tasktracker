@@ -87,6 +87,7 @@ def edit(user_id):
     user = save_result['entry']
     form = EditForm(request.form, obj=save_result['entry'])
     form.email.data = user.email
+    return redirect(url_for('.index'))
   
   return render_template('users/edit.html'
                         ,form=form

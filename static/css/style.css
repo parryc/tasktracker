@@ -153,9 +153,9 @@ input[type=checkbox] {
   padding-left: 10px;
 }
 
-.task-complete {
+.task-complete, .task-complete .task-details a {
   font-style: italic;
-  color: #939393;
+  color: rgba(0,0,0,.4) !important;
 }
 
 .task-details {
@@ -165,7 +165,6 @@ input[type=checkbox] {
 }
 
 .task-hover {
-  color: green;
   cursor: pointer;
 }
 

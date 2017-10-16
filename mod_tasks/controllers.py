@@ -67,7 +67,7 @@ def edit(task_id):
     abort(403)
 
   form = TaskForm(obj=task)
-  form.project.query = get_projects_by_user(current_user)
+  form.project.query = get_projects_by_user(current_user, include_inactive=True)
   if form.validate_on_submit():
     task     = form.task.data
     project  = form.project.data
@@ -82,13 +82,14 @@ def edit(task_id):
     else:
       flash(u'cannot edit "%s". %s' % (task, save_result['message']), 'error')
 
-    return redirect(url_for('.edit', task_id=task_id))
+    return redirect(url_for('.index'))
 
   return render_template('tasks/edit.html'
                         ,form=form
                         ,task=task
                         ,t=t
-                        ,m=m)
+                        ,m=m
+                        ,hide_subnav=True)
 
 @mod_tasks.route('/complete/<int:task_id>', methods=['POST'])
 @login_required

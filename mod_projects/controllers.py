@@ -62,7 +62,7 @@ def add():
 @login_required
 def edit(project_id):
   project = get_project(project_id)
-  if project not in get_projects_by_user(current_user):
+  if project not in get_projects_by_user(current_user, include_inactive=True):
     abort(403)
 
   form = ProjectForm(obj=project)
@@ -78,9 +78,10 @@ def edit(project_id):
     else:
       flash(u'cannot update %s. %s' % (project, save_result['message']), 'error')
 
-    return redirect(url_for('.edit', project_id=project_id))
+    return redirect(url_for('.index'))
 
   return render_template('projects/edit.html'
                         ,form=form
                         ,t=t
-                        ,m=m)
+                        ,m=m
+                        ,hide_subnav=True)
