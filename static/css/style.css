@@ -127,6 +127,20 @@ input[type=checkbox] {
   content: "bugfix";
 }
 
+.change-new {
+  color: #444;
+  background: #9fc390;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: inherit !important;
+  border-radius: 0.35rem;
+  padding: 0.15rem 0.25rem;
+}
+
+.change-new:before {
+  content: "new feature!";
+}
+
 .change-list li {
   margin-bottom: 0.15rem;
 }

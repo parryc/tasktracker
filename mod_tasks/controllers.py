@@ -21,10 +21,22 @@ def index():
   if not hasattr(current_user, 'id'):
     return redirect(url_for('login'))
 
-  tasks = get_tasks_by_user(current_user, number=-1)
-  for task in tasks:
-    task.priority = task.project.priority + task.due_when - task.high_priority
-  tasks = sorted(tasks, key=lambda x:x.priority)
+  tasks = get_tasks_by_user(current_user, include_backlog=False)
+  tasks = _sort_tasks(tasks)
+
+  return render_template('tasks/index.html'
+                        ,tasks=tasks
+                        ,t=t
+                        ,m=m)
+
+@mod_tasks.route('/all', methods=['GET'])
+@login_required
+def all():
+  if not hasattr(current_user, 'id'):
+    return redirect(url_for('login'))
+
+  tasks = get_tasks_by_user(current_user, include_backlog=True)
+  tasks = _sort_tasks(tasks)
 
   return render_template('tasks/index.html'
                         ,tasks=tasks
@@ -63,7 +75,7 @@ def add():
 @login_required
 def edit(task_id):
   task = get_task(task_id)
-  if task not in get_tasks_by_user(current_user, include_inactive=True):
+  if task not in get_tasks_by_user(current_user, include_complete=True):
     abort(403)
 
   form = TaskForm(obj=task)
@@ -101,3 +113,9 @@ def complete(task_id):
 
   complete_task(task_id)
   return jsonify({'success':True})
+
+
+def _sort_tasks(tasks):
+  for task in tasks:
+    task.priority = task.project.priority + task.due_when - task.high_priority
+  return sorted(tasks, key=lambda x:x.priority)
