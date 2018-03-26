@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import TextField, TextAreaField, SelectField, BooleanField
+from wtforms import TextField, TextAreaField, SelectField, BooleanField, DateField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import Required, Email
 
@@ -11,4 +11,5 @@ class TaskForm(FlaskForm):
   notes         = TextAreaField('notes')
   high_priority = BooleanField('high priority')
   due_when      = SelectField('priority', choices=_due_choices, default=2, coerce=int)
+  due_date      = DateField('due date (yyyy-mm-dd)')
   complete      = BooleanField('high priority')

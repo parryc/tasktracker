@@ -54,9 +54,10 @@ def add():
     print(project)
     notes    = form.notes.data
     due_when = form.due_when.data
+    due_date = form.due_date.data
     high_priority = form.high_priority.data
     
-    save_result = add_task(current_user.id, task, project, notes, False, high_priority, due_when)
+    save_result = add_task(current_user.id, task, project, notes, False, high_priority, due_when, due_date)
     if save_result['status']:
       flash(u'task added successfully.', 'success')
     else:
@@ -85,10 +86,11 @@ def edit(task_id):
     project  = form.project.data
     notes    = form.notes.data
     due_when = form.due_when.data
+    due_date = form.due_date.data
     high_priority = form.high_priority.data
     complete = form.complete.data
     
-    save_result = edit_task(task_id, task, project, notes, complete, high_priority, due_when)
+    save_result = edit_task(task_id, task, project, notes, complete, high_priority, due_when, due_date)
     if save_result['status']:
       flash(u'task was edited successfully.', 'success')
     else:

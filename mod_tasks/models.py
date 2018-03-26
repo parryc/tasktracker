@@ -18,13 +18,14 @@ class Tasks(db.Model):
 
   high_priority = db.Column(db.Boolean)
   due_when      = db.Column(db.Integer)
+  due_date      = db.Column(db.DateTime)
 
   creation_datetime  = db.Column(db.DateTime)
   last_modified      = db.Column(db.DateTime)
   completed_datetime = db.Column(db.DateTime)
 
   def __init__(self, user, project_id, task, notes, complete,
-               high_priority, due_when, creation_datetime=None,
+               high_priority, due_when, due_date, creation_datetime=None,
                last_modified=None, completed_datetime=None):
 
     self.user          = user
@@ -34,6 +35,7 @@ class Tasks(db.Model):
     self.complete      = complete
     self.high_priority = high_priority
     self.due_when      = due_when
+    self.due_date      = due_date
 
     if creation_datetime is None:
         creation_datetime = datetime.utcnow()
@@ -52,14 +54,15 @@ class Tasks(db.Model):
 ##########
 
 
-def add_task(user, task, project, notes, complete, high_priority, due_when):
+def add_task(user, task, project, notes, complete, high_priority, due_when, due_date):
   task_entry = Tasks(user=user
                     ,project_id=project
                     ,task=task
                     ,notes=notes
                     ,complete=complete
                     ,high_priority=high_priority
-                    ,due_when=due_when)
+                    ,due_when=due_when
+                    ,due_date=due_date)
   db.session.add(task_entry)
   return commit_entry(task_entry)
 
@@ -68,7 +71,7 @@ def add_task(user, task, project, notes, complete, high_priority, due_when):
 ##########
 
 
-def edit_task(id, task, project, notes, complete, high_priority, due_when):
+def edit_task(id, task, project, notes, complete, high_priority, due_when, due_date):
   _task = get_task(id)
   _task.project = project
   _task.task = task
@@ -80,6 +83,7 @@ def edit_task(id, task, project, notes, complete, high_priority, due_when):
     _task.completed_datetime = None
   _task.high_priority = high_priority
   _task.due_when = due_when
+  _task.due_date = due_date
   _task.last_modified = datetime.utcnow()
   return commit_entry(_task)
 

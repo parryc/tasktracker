@@ -8,7 +8,7 @@
     {{form.csrf_token}}  
     <div>
       i need to {{render_field(form.task, placeholder="do something of moderate importance")}} for {{render_field(form.project)}}<br/>
-      it needs to be done {{render_field(form.due_when)}}
+      it needs to be done {{render_field(form.due_when)}}, specifically by {{render_field(form.due_date, placeholder="optional (yyyy-mm-dd)")}}
       <br/>
       is high priority? {{render_field(form.high_priority)}}
       <br/>
