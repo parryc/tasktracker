@@ -20,6 +20,7 @@ class Users(UserMixin):
   username    = db.Column(db.Text(), unique=True)
   email       = db.Column(db.Text(), unique=True)
   password    = db.Column(db.Text())
+  temp_pin    = db.Column(db.Text())
 
   active      = db.Column(db.Boolean)
   logged_in   = db.Column(db.Boolean)
@@ -79,7 +80,7 @@ class Users(UserMixin):
 
     This is to support Flask-Login functions.
     """
-    return unicode(self.id)
+    return self.id
 
 ##########
 # CREATE #

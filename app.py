@@ -9,6 +9,8 @@ from flask_login import LoginManager, login_user, login_required,\
 from flask_permissions.core import Permissions
 from datetime import datetime
 import os
+import random
+import string
 
 app           = Flask(__name__)
 app.config.from_object('config.DevelopmentConfig')
@@ -89,10 +91,12 @@ def login():
   if form.validate_on_submit():
     # login and validate the user...
     user = get_user_by_email(form.email.data)
-    if user is not None and user.validate_password(form.password.data):
+    if user is not None and (user.validate_password(form.password.data)
+        or (user.temp_pin is not None and user.temp_pin == form.password.data)):
       if login_user(user):
         user.last_logged_in = datetime.utcnow()
         user.logged_in = True
+        user.temp_pin = None
         db.session.commit()
         flash("hi, everything here is bees.", "success")
         return redirect(request.args.get("next") or url_for("tasks.index"))
@@ -111,3 +115,12 @@ def logout():
   db.session.commit()
   logout_user()
   return redirect(url_for("login"))
+
+
+@app.route("/forgot/<email>", methods=["GET"])
+def forgot(email):
+  user = get_user_by_email(email)
+  pin = ''.join(random.choice(string.ascii_lowercase) for i in range(10))
+  user.temp_pin = pin
+  db.session.commit()
+  return pin
