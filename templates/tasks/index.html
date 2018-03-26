@@ -11,6 +11,7 @@
         <td class="task-checkbox"><i class="fal {% if task.complete %}fa-check-circle{% else %}fa-circle{% endif %}" aria-hidden="true" data-task-id="{{task.id}}"></i></td>
         <td>{% if task.high_priority %}<i class="fal fa-exclamation-circle" aria-hidden="true"></i>{% endif %}</td>
         <td><strong><em>[{{task.project.project}}]</em></strong></td>
+        <td>{% if task.due_date %}{{task.due_date.date().isoformat()}}{% endif %}</td>
         <td class="task-details">{% if task.due_when == 10 %}(backlog){% endif %} <a href="/tasks/edit/{{task.id}}">{{task.task}}</a></td>
       </tr>
     {% endfor %}

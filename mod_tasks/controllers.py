@@ -6,6 +6,7 @@ from mod_tasks.models import *
 from mod_projects.models import get_projects_by_user
 from helpers import *
 from app import csrf
+from datetime import datetime
 
 mod_tasks = Blueprint('tasks', __name__, url_prefix='/tasks')
 t = 'tasks'  # Title
@@ -120,4 +121,12 @@ def complete(task_id):
 def _sort_tasks(tasks):
   for task in tasks:
     task.priority = task.project.priority + task.due_when - task.high_priority
+    if task.due_date:
+      now = datetime.utcnow()
+      days_until = (task.due_date - now).days
+      print(days_until)
+      task.priority = (task.priority, days_until)
+    else:
+      task.priority = (task.priority, 9999)
+
   return sorted(tasks, key=lambda x:x.priority)
