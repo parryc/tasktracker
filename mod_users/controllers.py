@@ -54,7 +54,7 @@ def add():
     if save_result['status']:
       # create a starter project
       save_result_project = add_project(save_result['entry'], 'my first project', [], 'an example project', True, 2)
-      save_result_task = add_task(save_result['entry'].id, 'this is an example task', save_result_project['entry'].id, 'you can edit these notes', False, False, 2)
+      save_result_task = add_task(save_result['entry'].id, 'this is an example task', save_result_project['entry'].id, 'you can edit these notes', False, False, 2, '1970-01-01')
       flash(u'thanks for joining, %s. please login!' % username, 'success')
     else:
       flash(u'cannot register "%s". try a different username or email.' % username, 'error')
